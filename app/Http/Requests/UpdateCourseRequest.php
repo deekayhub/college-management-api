@@ -23,7 +23,7 @@ class UpdateCourseRequest extends FormRequest
     {
         return [
             'course_name' => 'sometimes|required|string|max:255',
-            'course_code' => 'sometimes|required|string|unique:courses,course_code,' . $this->route('id') . '|max:50',
+            'course_code' => 'sometimes|required|string|unique:courses,course_code,' . $this->route('id'),
             'description' => 'nullable|string',
         ];
     }

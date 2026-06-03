@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Models\Course;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
@@ -80,7 +81,7 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCourseRequest $request, string $id)
     {
         try{
             $course = Course::findOrFail($id);
