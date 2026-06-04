@@ -23,4 +23,9 @@ class Course extends Model
 
         return 'CS' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
     }
+
+    public function student()
+    {
+        return $this->belongsToMany(Course::class, 'enrollments', 'course_id', 'student_id');
+    }
 }

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\EnrollmentController;
+use App\Http\Controllers\Api\StudentController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -14,10 +16,12 @@ Route::get('/test', function () {
     ]);
 });
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('throttle:5,1')->group(function(){
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
 
-Route::middleware('auth:sanctum')->group(function (){
+Route::middleware('auth:sanctum', 'throttle:60,1')->group(function (){
     Route::get('/students', [StudentController::class, 'index']);
     Route::post('/students', [StudentController::class, 'store']);
     Route::get('/students/{id}', [StudentController::class, 'show']);
@@ -30,7 +34,9 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::put('/courses/{id}', [CourseController::class, 'update']);
     Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
-
+    Route::get('/enrollments', [EnrollmentController::class, 'index']); 
+    Route::post('/enrollments', [EnrollmentController::class, 'store']); 
+    Route::delete('/enrollments/{id}', [EnrollmentController::class, 'destroy']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 

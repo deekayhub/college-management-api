@@ -13,13 +13,8 @@ return new class extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')
-                ->constrained()
-                ->cascadeOnDelete();
-
-            $table->foreignId('course_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

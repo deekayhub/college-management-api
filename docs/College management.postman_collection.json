@@ -1,0 +1,666 @@
+{
+  "info": {
+    "name": "College management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "id": "dab50528-b0ee-4cd3-9052-c9c084bff129",
+      "name": "Auth",
+      "item": [
+        {
+          "id": "fb92d947-4568-4b0a-a836-959d97344ec6",
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "login"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "deepak@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "deepakkumar",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "96de1a34-70a5-4603-b2a7-e86bc24667f9",
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "register"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "John",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "john@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "johndoe0",
+                  "type": "text"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "johndoe0",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ce3a1f12-f720-4041-8564-3aa525f28bbf",
+      "name": "Students",
+      "item": [
+        {
+          "id": "1b6ad0dd-bfd5-4f94-bce3-a953e855a5a6",
+          "name": "student list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "students"
+              ],
+              "port": "8000",
+              "query": [
+                {
+                  "key": "search",
+                  "value": "rajesh",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "551fd596-4551-4516-a870-921b81f3c023",
+          "name": "student add",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "students"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "first_name",
+                  "value": "Rajesh bhai",
+                  "type": "text"
+                },
+                {
+                  "key": "last_name",
+                  "value": "kumar",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "rajesh1@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "1234567895",
+                  "type": "text"
+                },
+                {
+                  "key": "date_of_birth",
+                  "value": "1999-02-22",
+                  "type": "text"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "bd80528e-6401-45cc-bcb4-6000c30d1773",
+          "name": "student update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/5",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "students",
+                "5"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"first_name\":\"Deekay\",\"last_name\":\"yadav\",\"date_of_birth\":\"1999-06-16\",\"phone\":\"0000000000\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "c391bc61-380c-409e-8db9-1ea9834bf061",
+          "name": "student delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "students",
+                "3"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "3592cbf2-c737-45ec-a4cf-d2a9084fcaad",
+          "name": "student by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/5",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "students",
+                "5"
+              ],
+              "port": "8000"
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "018c80f8-44ff-4c45-b0f2-ba3a5de9c272",
+      "name": "Courses",
+      "item": [
+        {
+          "id": "fe58eec1-30a0-4fa4-873a-d2a16cbb178a",
+          "name": "Courses list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/courses",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ],
+              "port": "8000"
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "17|gpKnKHA24Rynwlyj4r2HMu7L1Y5rX2GBcNudQbwSa38f29dd",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "9571634b-c465-44b4-a6a8-5dbe729a9c42",
+          "name": "Create course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/courses",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "courses"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "course_name",
+                  "value": "React",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "  descriptions",
+                  "type": "text"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "17|gpKnKHA24Rynwlyj4r2HMu7L1Y5rX2GBcNudQbwSa38f29dd",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "481313b6-4f25-4190-8596-de54c3ebdb4f",
+          "name": "update course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/courses/13",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "13"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"course_name\":\"Laravel Course\",\"description\":\"Updated description\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "17|gpKnKHA24Rynwlyj4r2HMu7L1Y5rX2GBcNudQbwSa38f29dd",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "6af9ac9e-5e66-4ecb-8c19-64ac7919930e",
+          "name": "course list by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/courses/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "1"
+              ],
+              "port": "8000"
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "89d0afc1-beb8-4eb8-8c2d-a6d74d9a47fb",
+          "name": "delete course by id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/courses/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "1"
+              ],
+              "port": "8000"
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|n7pbotneEGDZNqxm51TiGtMo98rrkr0A30s4bANn6679c8c2",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "7c4d4258-b7ba-4eca-bd5b-8a7f912d355b",
+      "name": "Enrollment",
+      "item": [
+        {
+          "id": "cd0cf960-969f-482e-af72-59252300c792",
+          "name": "Course enroll",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://backend.requestly.com/echo",
+              "protocol": "https",
+              "host": [
+                "backend",
+                "requestly",
+                "com"
+              ],
+              "path": [
+                "echo"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"student_id\":1,\"course_id\":2}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "17|gpKnKHA24Rynwlyj4r2HMu7L1Y5rX2GBcNudQbwSa38f29dd",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "6721d9fe-9f0a-4550-9f30-922e2894e052",
+          "name": "show enrollments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/enrollments",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [
+                "api",
+                "enrollments"
+              ],
+              "port": "8000"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "17|gpKnKHA24Rynwlyj4r2HMu7L1Y5rX2GBcNudQbwSa38f29dd",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

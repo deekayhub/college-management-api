@@ -7,20 +7,39 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::all();
+
+        
+        $limit = $request->get('limit', 10);
+        $students = Student::query();
+        
+        if($request->filled('search')){
+            $search = $request->search;
+            $students->where('first_name', 'like', "%{$search}%")
+                ->orWhere('last_name', 'like', "%{$search}%")
+                ->orWhere('phone', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%");
+        }
+
+        $students = $students->paginate($limit);
         return response()->json([
           'success' => true,
           'message' => 'Students fetched successfully',
-          'data' => $students,  
+          'data' => $students->items(),
+          'patinations' => [
+            'current_page' => $students->currentPage(),
+            'last_page' => $students->lastPage(),
+            'per_page' => $students->perPage(),
+            'total' => $students->total(),
+          ],
         ]);
 
     }

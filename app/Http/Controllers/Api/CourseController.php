@@ -14,13 +14,28 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cources = Course::all();
+        $cources = Course::query();
+        $limit = $request->get('limit', 10);
+
+        if($request->filled('search')){
+            $search = $request->search;
+            $cources->where('course_name', 'like', "%{$search}%")
+                ->orWhere('course_code', 'like', "%{$search}%");
+        }
+        $cources = $cources->paginate($limit);
+
         return response()->json([
-          'success' => true,
-          'message' => 'cources fetched successfully',
-          'data' => $cources,  
+            'success' => true,
+            'message' => 'cources fetched successfully',
+            'data' => $cources,  
+            'patinations' => [
+                'current_page' => $cources->currentPage(),
+                'last_page' => $cources->lastPage(),
+                'per_page' => $cources->perPage(),
+                'total' => $cources->total(),
+            ],
         ]);
     }
 
