@@ -239,32 +239,7 @@ Swagger provides a **Try it out** feature for all endpoints.
 4. Click **Execute**.
 5. View the request, response, and generated cURL command.
 
----
-
-## Available API Modules
-
-### Authentication
-
-* POST /api/register
-* POST /api/login
-
-### Students
-
-* GET /api/students
-* POST /api/students
-* GET /api/students/{id}
-* PUT /api/students/{id}
-* DELETE /api/students/{id}
-
-### Courses
-
-* GET /api/courses
-* POST /api/courses
-* GET /api/courses/{id}
-* PUT /api/courses/{id}
-* DELETE /api/courses/{id}
-
----
+--- 
 
 ## Regenerating Documentation
 
