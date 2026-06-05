@@ -137,8 +137,8 @@ http://localhost:8000/api
 
 ## Quick Links
 
-- [API Documentation](docs/API_DOCUMENTATION.md)
-- [Postman Collection](College%20Management%20API.postman_collection.json)
+- [API Documentation](docs/api-documention.md)
+- [Postman Collection](docs/College%20Management%20API.postman_collection.json)
 
 ---  
 
