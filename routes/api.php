@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/test', function () {
+Route::get('/', function () {
     return response()->json([
         'success' => true,
-        'message' => 'API is working',
+        'message' => 'College Management API Running',
     ]);
 });
 

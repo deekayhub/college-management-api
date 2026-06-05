@@ -7,9 +7,57 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use OpenApi\Attributes as OA;
 
 class AuthController extends Controller
 {
+
+    #[OA\Post(
+        path: "/api/register",
+        summary: "Register User",
+        tags: ["Authentication"],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ["name", "email", "password", "password_confirmation"],
+                properties: [
+                    new OA\Property(
+                        property: "name",
+                        type: "string",
+                        nullable: true
+                    ),
+                    new OA\Property(
+                        property: "email",
+                        type: "string",
+                        format: "email",
+                        nullable: true
+                    ),
+                    new OA\Property(
+                        property: "password",
+                        type: "string",
+                        format: "password",
+                        nullable: true
+                    ),
+                    new OA\Property(
+                        property: "password_confirmation",
+                        type: "string",
+                        format: "password",
+                        nullable: true
+                    )
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "User registered successfully"
+            ),
+            new OA\Response(
+                response: 422,
+                description: "Validation error"
+            )
+        ]
+    )]
     public function register(Request $request)
     {
         $validatedData = $request->validate([
@@ -33,6 +81,33 @@ class AuthController extends Controller
         ]);
     }
 
+
+    #[OA\Post(
+        path: "/api/login",
+        tags: ["Authentication"],
+        summary: "Login User",
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ["email", "password"],
+                properties: [
+                    new OA\Property(
+                        property: "email",
+                        type: "string",
+                        example: "deepak@gmail.com"
+                    ),
+                    new OA\Property(
+                        property: "password",
+                        type: "string",
+                        example: "password"
+                    )
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(response: 200, description: "Login Successful")
+        ]
+    )]
     public function login(Request $request)
     {
         $validatedData = $request->validate([

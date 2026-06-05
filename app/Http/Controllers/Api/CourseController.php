@@ -8,12 +8,48 @@ use App\Models\Course;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateCourseRequest;
+use OpenApi\Attributes as OA;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    #[OA\Get(
+        path: "/api/courses",
+        summary: "Get list of courses",
+        tags: ["Courses"],
+        security: [["sanctum" => []]],
+        parameters: [
+            new OA\Parameter(
+                name: "limit",
+                in: "query",
+                description: "Number of records per page",
+                required: false,
+                schema: new OA\Schema(
+                    type: "integer",
+                    default: 10
+                )
+            ),
+            new OA\Parameter(
+                name: "search",
+                in: "query",
+                description: "Search by course name or course code",
+                required: false,
+                schema: new OA\Schema(
+                    type: "string"
+                )
+            )
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Courses fetched successfully"
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthenticated"
+            )
+        ]
+    )] 
+
     public function index(Request $request)
     {
         $cources = Course::query();
@@ -39,9 +75,44 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    #[OA\Post(
+        path: "/api/courses",
+        summary: "Create a new course",
+        tags: ["Courses"],
+        security: [["sanctum" => []]],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ["course_name", "description"],
+                properties: [
+                    new OA\Property(
+                        property: "course_name",
+                        type: "string",
+                        nullable: true
+                    ),
+                    new OA\Property(
+                        property: "description",
+                        type: "string",
+                        nullable: true
+                    )
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 201,
+                description: "Course created successfully"
+            ),
+            new OA\Response(
+                response: 422,
+                description: "Validation failed"
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthenticated"
+            )
+        ]
+    )]
     public function store(StoreCourseRequest $request)
     {
         try{
@@ -66,9 +137,36 @@ class CourseController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+    #[OA\Get(
+        path: "/api/courses/{id}",
+        summary: "Get course by ID",
+        tags: ["Courses"],
+        security: [["sanctum" => []]],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                in: "path",
+                required: true,
+                description: "Course ID",
+                schema: new OA\Schema(type: "integer")
+            )
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Course fetched successfully"
+            ),
+            new OA\Response(
+                response: 404,
+                description: "Course not found"
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthenticated"
+            )
+        ]
+    )]
+
     public function show(string $id)
     {
         try{
@@ -93,9 +191,57 @@ class CourseController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    #[OA\Put(
+        path: "/api/courses/{id}",
+        summary: "Update course",
+        tags: ["Courses"],
+        security: [["sanctum" => []]],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                in: "path",
+                required: true,
+                description: "Course ID",
+                schema: new OA\Schema(type: "integer")
+            )
+        ],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(
+                        property: "course_name",
+                        type: "string",
+                        nullable: true
+                    ),
+                    new OA\Property(
+                        property: "description",
+                        type: "string",
+                        nullable: true
+                    )
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Course updated successfully"
+            ),
+            new OA\Response(
+                response: 404,
+                description: "Course not found"
+            ),
+            new OA\Response(
+                response: 422,
+                description: "Validation failed"
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthenticated"
+            )
+        ]
+    )]
+
     public function update(UpdateCourseRequest $request, string $id)
     {
         try{
@@ -124,9 +270,36 @@ class CourseController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    #[OA\Delete(
+        path: "/api/courses/{id}",
+        summary: "Delete course",
+        tags: ["Courses"],
+        security: [["sanctum" => []]],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                in: "path",
+                required: true,
+                description: "Course ID",
+                schema: new OA\Schema(type: "integer")
+            )
+        ],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Course deleted successfully"
+            ),
+            new OA\Response(
+                response: 404,
+                description: "Course not found"
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthenticated"
+            )
+        ]
+    )]
+
     public function destroy(string $id)
     {
         $course = Course::find($id);
