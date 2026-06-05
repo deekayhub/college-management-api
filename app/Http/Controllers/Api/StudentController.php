@@ -15,9 +15,7 @@ class StudentController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-
-        
+    {        
         $limit = $request->get('limit', 10);
         $students = Student::query();
         
