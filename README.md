@@ -134,6 +134,153 @@ http://localhost:8000/api
 
 ---
 
+# API Documentation (Swagger)
+
+This project includes interactive API documentation powered by L5-Swagger (OpenAPI).
+
+## Generate Swagger Documentation
+
+After adding or updating API annotations, generate the Swagger documentation:
+
+```bash
+php artisan l5-swagger:generate
+```
+
+## Access Swagger UI
+
+Start the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+Open the Swagger UI in your browser:
+
+```text
+http://localhost:8000/api/documentation
+```
+
+---
+
+## Authentication
+
+Most API endpoints are protected using Laravel Sanctum.
+
+### Step 1: Register a User
+
+Execute the following endpoint from Swagger:
+
+```http
+POST /api/register
+```
+
+Request Body:
+
+```json
+{
+  "name": "Deepak Kumar",
+  "email": "deepak@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+```
+
+### Step 2: Login
+
+Execute:
+
+```http
+POST /api/login
+```
+
+Request Body:
+
+```json
+{
+  "email": "deepak@example.com",
+  "password": "password123"
+}
+```
+
+Successful Response:
+
+```json
+{
+  "success": true,
+  "token": "1|xxxxxxxxxxxxxxxxxxxxxxxx"
+}
+```
+
+Copy the token from the response.
+
+### Step 3: Authorize Swagger
+
+1. Click the **Authorize** button at the top-right of the Swagger page.
+2. Enter the token in the following format:
+
+```text
+Bearer 1|xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+3. Click **Authorize**.
+4. Close the popup.
+
+You can now access all protected endpoints.
+
+---
+
+## Testing APIs
+
+Swagger provides a **Try it out** feature for all endpoints.
+
+1. Expand an endpoint.
+2. Click **Try it out**.
+3. Fill in the required parameters or request body.
+4. Click **Execute**.
+5. View the request, response, and generated cURL command.
+
+---
+
+## Available API Modules
+
+### Authentication
+
+* POST /api/register
+* POST /api/login
+
+### Students
+
+* GET /api/students
+* POST /api/students
+* GET /api/students/{id}
+* PUT /api/students/{id}
+* DELETE /api/students/{id}
+
+### Courses
+
+* GET /api/courses
+* POST /api/courses
+* GET /api/courses/{id}
+* PUT /api/courses/{id}
+* DELETE /api/courses/{id}
+
+---
+
+## Regenerating Documentation
+
+Whenever you modify API annotations:
+
+```bash
+php artisan l5-swagger:generate
+```
+
+Clear cache if needed:
+
+```bash
+php artisan optimize:clear
+```
+
+
 
 ## Quick Links
 
